@@ -7,31 +7,63 @@ export function App() {
   const studyMaterials = [
     {
       title: "Mathematics",
-      description: "Comprehensive math courses covering algebra, calculus, and geometry with interactive problem-solving.",
+      description: "Master algebra, calculus, geometry, and statistics with our comprehensive math program designed for all skill levels.",
+      fullDescription: "From basic arithmetic to advanced calculus, our mathematics program covers everything you need to succeed. Includes interactive problem-solving sessions, practice tests, and personalized feedback.",
       icon: Calculator,
       color: "from-orange-400 to-red-500",
       bgColor: "bg-orange-50",
+      image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&h=600&fit=crop",
+      duration: "12 Weeks",
+      level: "Beginner to Advanced",
+      rating: 4.8,
+      reviews: 245,
+      price: "$199",
+      topics: ["Algebra", "Calculus", "Geometry", "Statistics"],
     },
     {
       title: "Science",
-      description: "Physics, chemistry, and biology courses with practical experiments and real-world applications.",
+      description: "Explore physics, chemistry, and biology through hands-on experiments and engaging theoretical lessons.",
+      fullDescription: "Dive into the wonders of science with our comprehensive program. Conduct virtual and physical experiments, learn scientific methods, and understand how the world works around you.",
       icon: FlaskConical,
       color: "from-emerald-400 to-teal-500",
       bgColor: "bg-emerald-50",
+      image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&h=600&fit=crop",
+      duration: "16 Weeks",
+      level: "Intermediate",
+      rating: 4.9,
+      reviews: 189,
+      price: "$249",
+      topics: ["Physics", "Chemistry", "Biology", "Lab Work"],
     },
     {
       title: "Languages",
-      description: "English, Arabic, and French language courses for all levels with native-speaking instructors.",
+      description: "Learn English, Arabic, or French with native-speaking instructors and immersive conversation practice.",
+      fullDescription: "Become fluent in your chosen language through immersive learning. Our native-speaking instructors provide real-world conversation practice, grammar lessons, and cultural insights.",
       icon: Globe,
       color: "from-blue-400 to-indigo-500",
       bgColor: "bg-blue-50",
+      image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=800&h=600&fit=crop",
+      duration: "20 Weeks",
+      level: "All Levels",
+      rating: 4.7,
+      reviews: 312,
+      price: "$179",
+      topics: ["English", "Arabic", "French", "Conversation"],
     },
     {
       title: "Computer Science",
-      description: "Programming, web development, and computer basics courses for the digital age.",
+      description: "Master programming, web development, and computer fundamentals with industry-relevant projects.",
+      fullDescription: "Start your tech journey with our computer science program. Learn popular programming languages, build real projects, and gain skills that employers are looking for in today's digital economy.",
       icon: Code,
       color: "from-purple-400 to-pink-500",
       bgColor: "bg-purple-50",
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop",
+      duration: "24 Weeks",
+      level: "Beginner to Intermediate",
+      rating: 4.9,
+      reviews: 428,
+      price: "$299",
+      topics: ["Python", "Web Dev", "JavaScript", "Databases"],
     },
   ];
 
@@ -152,7 +184,7 @@ export function App() {
       </section>
 
       {/* Study Materials Section */}
-      <section id="courses" className="py-20">
+      <section id="courses" className="py-20 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <span className="text-indigo-600 font-semibold text-sm uppercase tracking-wider">Our Programs</span>
@@ -162,28 +194,90 @@ export function App() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {studyMaterials.map((material, index) => {
               const IconComponent = material.icon;
               return (
                 <div
                   key={index}
-                  className="group bg-white rounded-3xl p-8 shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-slate-100"
+                  className="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-slate-100"
                 >
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${material.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                    <IconComponent className="w-8 h-8 text-white" />
+                  {/* Image */}
+                  <div className="relative h-56 overflow-hidden">
+                    <img 
+                      src={material.image} 
+                      alt={material.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    <div className="absolute top-4 right-4">
+                      <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-slate-900 font-bold rounded-full text-sm">
+                        {material.price}
+                      </span>
+                    </div>
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${material.color} flex items-center justify-center mb-2`}>
+                        <IconComponent className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-white">
+                        {material.title}
+                      </h3>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">
-                    {material.title}
-                  </h3>
-                  <p className="text-slate-600 text-sm leading-relaxed">
-                    {material.description}
-                  </p>
-                  <div className="mt-6 pt-6 border-t border-slate-100">
-                    <span className="text-indigo-600 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-                      Learn more 
-                      <span>→</span>
-                    </span>
+
+                  {/* Content */}
+                  <div className="p-6">
+                    {/* Rating & Reviews */}
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="flex items-center gap-1">
+                        <svg className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <span className="font-semibold text-slate-900">{material.rating}</span>
+                      </div>
+                      <span className="text-slate-400">({material.reviews} reviews)</span>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-slate-600 mb-4 leading-relaxed">
+                      {material.fullDescription}
+                    </p>
+
+                    {/* Topics */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {material.topics.map((topic, i) => (
+                        <span 
+                          key={i}
+                          className={`px-3 py-1 ${material.bgColor} text-slate-700 text-xs font-medium rounded-full`}
+                        >
+                          {topic}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Meta Info */}
+                    <div className="flex items-center gap-6 py-4 border-t border-slate-100 mb-4">
+                      <div className="flex items-center gap-2 text-slate-600">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span className="text-sm">{material.duration}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-slate-600">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                        <span className="text-sm">{material.level}</span>
+                      </div>
+                    </div>
+
+                    {/* CTA Button */}
+                    <a
+                      href="#join"
+                      className={`block w-full py-3 text-center bg-gradient-to-r ${material.color} text-white font-semibold rounded-xl hover:shadow-lg transition-all hover:-translate-y-0.5`}
+                    >
+                      Enroll Now
+                    </a>
                   </div>
                 </div>
               );
